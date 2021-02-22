@@ -13,6 +13,9 @@ add_library(libzsync zsync.c zmap.c sha1.c)
 # since the target is called libsomething, one doesn't need CMake's additional lib prefix
 set_target_properties(libzsync PROPERTIES PREFIX "")
 
+# supress all g++ warnings from libzsync
+target_compile_options(libzsync PUBLIC $<$<CXX_COMPILER_ID:GNU>:-w>)
+
 # link relevant libraries
 target_link_libraries(libzsync zsync2_libz librcksum)
 
